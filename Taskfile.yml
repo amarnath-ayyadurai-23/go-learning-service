@@ -1,0 +1,25 @@
+version: '3'
+
+vars:
+  GO_BASIC_FOLDER: basicgo
+  GO_HTTP_FOLDER: endpoints
+
+tasks:
+  hello:
+    desc: "Basic Hello world app"
+    dir: "{{.GO_BASIC_FOLDER}}"
+    cmds:
+      - go run main.go
+    silent: true
+
+  build:
+    desc: "Building basic go code"
+    dir: "{{.GO_BASIC_FOLDER}}"
+    cmds:
+      - go build -v -i main.go
+
+  run-http:
+    desc: "Running (Blocking) http code from go librariry"
+    dir: "{{.GO_HTTP_FOLDER}}"
+    cmds:
+      - go run http.go
