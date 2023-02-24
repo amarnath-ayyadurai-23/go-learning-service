@@ -5,11 +5,23 @@ vars:
   GO_HTTP_FOLDER: endpoints
 
 tasks:
+  default:
+    desc: "showing all the commands possible under the directory"
+    cmds: 
+      - task -a
+
   hello:
     desc: "Basic Hello world app"
     dir: "{{.GO_BASIC_FOLDER}}"
     cmds:
       - go run main.go
+    silent: true
+  
+  test-hello:
+    desc: "Basic Testing for Hello"
+    dir: "{{.GO_BASIC_FOLDER}}"
+    cmds:
+      - go test -v
     silent: true
 
   build:
@@ -19,7 +31,7 @@ tasks:
       - go build -v -i main.go
 
   run-http:
-    desc: "Running (Blocking) http code from go librariry"
+    desc: "Running (Blocking) http code from go library"
     dir: "{{.GO_HTTP_FOLDER}}"
     cmds:
       - go run http.go

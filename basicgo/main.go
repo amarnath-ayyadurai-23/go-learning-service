@@ -4,7 +4,12 @@ import "fmt"
 import "rsc.io/quote"
 import "log"
 
+func basic() string {
+	res := fmt.Sprintf("\nHello, World!");
+	return res
+}
+
 func main() {
-    fmt.Println("\nHello, World!")
-	log.Println("\t",quote.Go(),"\n")
+    fmt.Print(basic(),"\n")
+	log.Println("\t",quote.Go())
 }
