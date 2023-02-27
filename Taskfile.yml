@@ -2,7 +2,8 @@ version: '3'
 
 vars:
   GO_BASIC_FOLDER: basicgo
-  GO_HTTP_FOLDER: endpoints
+  GO_HTTP_FOLDER: http
+  GO_TEST_FOLDER: tests
 
 tasks:
   default:
@@ -35,3 +36,16 @@ tasks:
     dir: "{{.GO_HTTP_FOLDER}}"
     cmds:
       - go run http.go
+
+  test-http:
+    desc: "Testing the http endpoints (integrated test)"
+    dir: "{{.GO_HTTP_FOLDER}}"
+    cmds:
+      - go test -v
+  
+  dtest-http:
+    desc: "Testing the http endpoints (detached test modules)"
+    dir: "{{.GO_TEST_FOLDER}}"
+    cmds:
+      - go run testruns.go
+  
