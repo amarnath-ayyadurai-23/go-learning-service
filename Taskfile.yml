@@ -2,14 +2,27 @@ version: '3'
 
 vars:
   GO_BASIC_FOLDER: basicgo
-  GO_HTTP_FOLDER: endpoints
+  GO_HTTP_FOLDER: http
+  GO_TEST_FOLDER: tests
 
 tasks:
+  default:
+    desc: "showing all the commands possible under the directory"
+    cmds: 
+      - task -a
+
   hello:
     desc: "Basic Hello world app"
     dir: "{{.GO_BASIC_FOLDER}}"
     cmds:
       - go run main.go
+    silent: true
+  
+  test-hello:
+    desc: "Basic Testing for Hello"
+    dir: "{{.GO_BASIC_FOLDER}}"
+    cmds:
+      - go test -v
     silent: true
 
   build:
@@ -19,7 +32,20 @@ tasks:
       - go build -v -i main.go
 
   run-http:
-    desc: "Running (Blocking) http code from go librariry"
+    desc: "Running (Blocking) http code from go library"
     dir: "{{.GO_HTTP_FOLDER}}"
     cmds:
       - go run http.go
+
+  test-http:
+    desc: "Testing the http endpoints (integrated test)"
+    dir: "{{.GO_HTTP_FOLDER}}"
+    cmds:
+      - go test -v
+  
+  dtest-http:
+    desc: "Testing the http endpoints (detached test modules)"
+    dir: "{{.GO_TEST_FOLDER}}"
+    cmds:
+      - go run testruns.go
+  
