@@ -7,45 +7,54 @@ vars:
 
 tasks:
   default:
-    desc: "showing all the commands possible under the directory"
+    desc: "0.0 showing all the commands possible under the directory"
     cmds: 
       - task -a
 
   hello:
-    desc: "Basic Hello world app"
+    desc: "0.1 Basic Hello world app"
     dir: "{{.GO_BASIC_FOLDER}}"
     cmds:
       - go run main.go
     silent: true
   
   test-hello:
-    desc: "Basic Testing for Hello"
+    desc: "0.2 Basic Testing for Hello"
     dir: "{{.GO_BASIC_FOLDER}}"
     cmds:
       - go test -v
     silent: true
 
   build:
-    desc: "Building basic go code"
+    desc: "0.3 Building basic go code"
     dir: "{{.GO_BASIC_FOLDER}}"
     cmds:
       - go build -v -i main.go
 
   run-http:
-    desc: "Running (Blocking) http code from go library"
+    desc: "1.0 Running (Blocking) http code from go library"
     dir: "{{.GO_HTTP_FOLDER}}"
     cmds:
       - go run http.go
 
   test-http:
-    desc: "Testing the http endpoints (integrated test)"
+    desc: "1.1.1 Testing the http endpoints (integrated test)"
     dir: "{{.GO_HTTP_FOLDER}}"
     cmds:
       - go test -v
   
   dtest-http:
-    desc: "Testing the http endpoints (detached test modules)"
+    desc: "1.1.2 Testing the http endpoints (detached test modules)"
     dir: "{{.GO_TEST_FOLDER}}"
     cmds:
       - go run testruns.go
   
+  docker:build:
+    desc: "2.0 Creating image of the api service"
+    cmds:
+      - docker build -t golearningservice .
+
+  docker:run:
+    desc: "2.1 Running the service from image for testing"
+    cmds:
+      - docker run -p 3000:3000 -it golearningservice
