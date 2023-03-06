@@ -1,0 +1,93 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation for Learning API",
+    "title": "Golang Learning Service Microservice API.",
+    "contact": {
+      "name": "Amar",
+      "email": "amarnath.ayyadurai@pantheon.io"
+    },
+    "license": {
+      "name": "CC",
+      "url": "https://creativecommons.org/licenses/"
+    },
+    "version": "0.0.1"
+  },
+  "host": "localhost",
+  "basePath": "/",
+  "paths": {
+    "/": {
+      "get": {
+        "description": "This is the description for getting basic text like a ping",
+        "tags": [
+          "Basic"
+        ],
+        "summary": "This is the summary for getting a echo from base url",
+        "operationId": "basic",
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "$ref": "#/responses/ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/ErrorResponse"
+          }
+        }
+      }
+    },
+    "/api/v1": {
+      "get": {
+        "description": "# This is the description for getting basic text like a ping",
+        "tags": [
+          "JSONtest"
+        ],
+        "summary": "This is the summary for getting a echo from base url",
+        "operationId": "jsontest",
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "$ref": "#/responses/ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/ErrorResponse"
+          }
+        }
+      }
+    },
+    "/hello": {
+      "get": {
+        "description": "# This is the description for getting basic text like a ping",
+        "tags": [
+          "Hello"
+        ],
+        "summary": "This is the summary for getting a echo from base url",
+        "operationId": "hello",
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "$ref": "#/responses/ErrorResponse"
+          },
+          "500": {
+            "$ref": "#/responses/ErrorResponse"
+          }
+        }
+      }
+    }
+  }
+}
