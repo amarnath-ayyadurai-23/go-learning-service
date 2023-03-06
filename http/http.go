@@ -93,7 +93,7 @@ func getHello(w http.ResponseWriter, r *http.Request) {
 // responses:
 //
 //	  200:
-//			"$ref": "#/responses/rootResponse"
+//			"$ref": "#/responses/jsonResponse"
 //	  404: ErrorResponse
 //	  500: ErrorResponse
 func getJson(w http.ResponseWriter, r *http.Request) {
