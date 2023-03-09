@@ -4,6 +4,7 @@ vars:
   GO_BASIC_FOLDER: basicgo
   GO_HTTP_FOLDER: http
   GO_TEST_FOLDER: tests
+  GO_REST_FOLDER: functions
 
 tasks:
   default:
@@ -58,3 +59,15 @@ tasks:
     desc: "2.1 Running the service from image for testing"
     cmds:
       - docker run -p 3000:3000 -it golearningservice
+
+  swagger:gen:
+    desc: "3.0 Generating REST Documents for ginREST API"
+    dir: "{{.GO_REST_FOLDER}}"
+    cmds:
+      - swagger generate spec -o ../docs/ginswagger.json
+
+  swagger:serve:
+    desc: "3.1 Running REST Documents for ginREST API"
+    dir: "{{.GO_REST_FOLDER}}"
+    cmds:
+      - swagger serve ../docs/ginswagger.json

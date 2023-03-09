@@ -1,0 +1,132 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation for Learning REST API",
+    "title": "Golang Learning Service REST API.",
+    "contact": {
+      "name": "Amar",
+      "email": "amarnath.ayyadurai@pantheon.io"
+    },
+    "license": {
+      "name": "CC",
+      "url": "https://creativecommons.org/licenses/"
+    },
+    "version": "0.0.1"
+  },
+  "host": "localhost",
+  "basePath": "/books",
+  "paths": {
+    "/books": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Books"
+        ],
+        "summary": "Getting a List of all the Books",
+        "operationId": "GettingAllBooks",
+        "responses": {
+          "200": {
+            "description": "Books response (default)",
+            "$ref": "#/responses/BooksRes"
+          }
+        }
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Books"
+        ],
+        "summary": "Creating a Book based on the info",
+        "operationId": "CreatingBook",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/BooksRes"
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Books"
+        ],
+        "summary": "Deleting the records of a Book by ID",
+        "operationId": "DeletingBook",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ]
+      },
+      "patch": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Books"
+        ],
+        "summary": "Updating a Book's Information",
+        "operationId": "UpdatingBook",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "ID",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/BooksRes"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "BooksRes": {
+      "description": "",
+      "headers": {
+        "author": {
+          "type": "string",
+          "example": "Author Name",
+          "description": "Author"
+        },
+        "id": {
+          "type": "string",
+          "example": "1",
+          "description": "ID"
+        },
+        "title": {
+          "type": "string",
+          "example": "Book Name",
+          "description": "Title"
+        }
+      }
+    }
+  }
+}
