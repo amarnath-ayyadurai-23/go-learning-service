@@ -1,6 +1,6 @@
-// Package main Golang Learning Service Microservice API.
+// Package main Golang Learning Service REST API.
 //
-// Documentation for Learning API
+// Documentation for Learning REST API
 //
 //	Schemes: http, https
 //	Host: localhost
@@ -25,21 +25,78 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Book struct {
-	ID     string `json:"id"`
-	Title  string `json:"title"`
-	Author string `json:"author"`
-}
-
 var books = []Book{
 	{ID: "1", Title: "Harry Potter", Author: "J. K. Rowling"},
 	{ID: "2", Title: "The Lord of the Rings", Author: "J. R. R. Tolkien"},
 	{ID: "3", Title: "The Wizard of Oz", Author: "L. Frank Baum"},
 }
 
+// swagger:response BooksRes
+//
+//in:body
+type _ struct {
+	// ID
+	//
+	// example: 1
+	ID string `json:"id"`
+	// Title
+	//
+	// example: Book Name
+	Title string `json:"title"`
+	// Author
+	//
+	// example: Author Name
+	Author string `json:"author"`
+	// schema:
+	//   type: application/json
+}
+
+// swagger:model BooksRes
+// in:body
+type Book struct {
+	// ID
+	//
+	// example: 1
+	ID string `json:"id"`
+	// Title
+	//
+	// example: Book Name
+	Title string `json:"title"`
+	// Author
+	//
+	// example: Author Name
+	Author string `json:"author"`
+	// schema:
+	//   type: application/json
+}
+
+// swagger:operation GET /books Books GettingAllBooks
+//
+// # Getting a List of all the Books
+//
+// ---
+// produces:
+// - application/json
+// responses:
+//
+//	  "200":
+//		   description: Books response (default)
+//		   "$ref": "#/responses/BooksRes"
 func getB(c *gin.Context) {
 	c.JSON(http.StatusOK, books)
 }
+
+// swagger:operation POST /books Books CreatingBook
+//
+// # Creating a Book based on the info
+//
+// ---
+// produces:
+// - application/json
+// responses:
+//
+//	  "200":
+//		   "$ref": "#/responses/BooksRes"
 
 func postB(c *gin.Context) {
 	var book Book
@@ -56,6 +113,26 @@ func postB(c *gin.Context) {
 	c.JSON(http.StatusCreated, book)
 }
 
+// swagger:parameters DeletingBook UpdatingBook
+type _ struct {
+	// ID
+	// in:path
+	// required: true
+	// schema:
+	//   type: string
+	ID string `json:"id"`
+}
+
+// swagger:operation DELETE /books/{id} Books DeletingBook
+//
+// # Deleting the records of a Book by ID
+//
+// ---
+// produces:
+// - application/json
+// responses:
+//
+//	"204": HTTPResponse
 func deleteB(c *gin.Context) {
 	id := c.Param("id")
 
@@ -68,6 +145,18 @@ func deleteB(c *gin.Context) {
 
 	c.Status(http.StatusNoContent)
 }
+
+// swagger:operation PATCH /books/{id} Books UpdatingBook
+//
+// # Updating a Book's Information
+//
+// ---
+// produces:
+// - application/json
+// responses:
+//
+//	  "200":
+//		   "$ref": "#/responses/BooksRes"
 
 func patchB(c *gin.Context) {
 	var book Book
