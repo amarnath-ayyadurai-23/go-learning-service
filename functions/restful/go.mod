@@ -4,6 +4,9 @@ go 1.20
 
 require (
 	github.com/GoogleCloudPlatform/functions-framework-go v1.6.1
+	github.com/dimfeld/httptreemux/v5 v5.5.0
+	github.com/go-sql-driver/mysql v1.6.0
+	github.com/jmoiron/sqlx v1.3.5
 	go.uber.org/zap v1.10.0
 )
 
