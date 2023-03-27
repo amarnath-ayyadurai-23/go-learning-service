@@ -1,0 +1,24 @@
+version: '3'
+services:
+
+  flyway:
+    image: flyway/flyway:9.1
+    container_name: lrn_flyway
+    command: -url=jdbc:mysql://db/learning?allowPublicKeyRetrieval=true -user=root -password=root -connectRetries=60 -connectRetriesInterval=2 migrate
+    volumes:
+      - ./data/migrations:/flyway/sql
+    depends_on:
+      - db
+
+  db:
+    platform: linux/x86_64
+    image: mysql:8
+    container_name: lrn_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: learning
+    ports:
+      - "7801:3306"
