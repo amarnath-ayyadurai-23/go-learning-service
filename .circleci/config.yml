@@ -13,6 +13,11 @@ jobs:
     - image: cimg/go:1.20.2
     steps:
       - run: echo "Hello Lint"
+   test:
+    docker:
+    - image: cimg/go:1.20.2
+    steps:
+      - run: echo "Hello Test"
  
 workflows:    
   pipeline:
@@ -21,3 +26,6 @@ workflows:
       - built:
           requires:
             - lint
+      - test:
+          requires:
+            - built
