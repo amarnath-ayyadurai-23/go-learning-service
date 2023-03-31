@@ -65,8 +65,8 @@ func HookFunction(w http.ResponseWriter, r *http.Request) {
 
 	//apiMux.ServeHttp(w, r)
 
-	http.HandleFunc("/", Handler)
-	//RootFunction(w, r)
+	//http.HandleFunc("/", Handler)
+	RootFunction(w, r)
 	//user := []User{}
 
 	// er := db.Select(&user, "select * from people")
@@ -91,8 +91,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 func Router() http.Handler {
 	router := httptreemux.New()
-	router.GET("/", httptreemux.HandlerFunc(HelloWorld))
-	router.GET("/:name", MyHandler)
+	//router.GET("/", httptreemux.HandlerFunc(HelloWorld))
+	//router.GET("/:name", MyHandler)
 	//router.ServeHTTP(w, r)
 	return router
 }

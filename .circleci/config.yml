@@ -3,7 +3,22 @@ version : 2.1
 orbs:
   welcome : circleci/welcome-orb@0.4.1
 
+jobs:
+  built:
+    steps:
+      - checkout
+      - run : echo "Hello Build"
+
+  lint:
+    steps:
+      - run : echo "Hello Lint"
+
 workflows:
   welcome:
     jobs:
     - welcome/run
+  pipeline:
+    jobs:
+      lint
+      requires:
+        built
