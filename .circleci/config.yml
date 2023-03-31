@@ -17,7 +17,7 @@ jobs:
 workflows:    
   pipeline:
     jobs:
-      - built
-      - lint:
+      - lint
+      - built:
           requires:
-            - built
+            - lint
