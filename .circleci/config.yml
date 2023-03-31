@@ -16,14 +16,7 @@ jobs:
     - image: cimg/go:latest
     steps:
       - run : echo "Hello Lint"
-
-workflows:
-  welcome:
-    jobs:
-    - welcome/run
-  pipeline:
-    jobs:
-      - lint
-      - built
-    requires:
-      welcome
+ 
+ workflows:     
+    welcome:
+      - welcome/run
