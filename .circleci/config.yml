@@ -1,12 +1,13 @@
 version: 2.1
 
 workflows:     
-    pipeline:
-      jobs:
-        - built
-        - lint
-            requires:
-              - built
+  version: 2
+  pipeline:
+    jobs:
+      - built
+      - lint
+        requires:
+          - built
 
 jobs:
   built:
