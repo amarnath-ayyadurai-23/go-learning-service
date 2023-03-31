@@ -18,5 +18,8 @@ jobs:
       - run : echo "Hello Lint"
  
  workflows:     
-    welcome:
-      - welcome/run
+    pipeline:
+      jobs:
+        - welcome/run
+        - built
+        - lint
