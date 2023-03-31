@@ -5,11 +5,15 @@ orbs:
 
 jobs:
   built:
+    docker:
+    - image: cimg/go:latest
     steps:
       - checkout
       - run : echo "Hello Build"
 
   lint:
+    docker:
+    - image: cimg/go:latest
     steps:
       - run : echo "Hello Lint"
 
