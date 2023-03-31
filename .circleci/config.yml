@@ -1,25 +1,21 @@
 version: 2.1
 
-orbs:
-  welcome : circleci/welcome-orb@0.4.1
-
 jobs:
   built:
     docker:
-    - image: cimg/go:latest
+    - image: cimg/go:1.20.2
     steps:
       - checkout
-      - run : echo "Hello Build"
-
+      - run: echo "Hello Build"
+      - run: go version 
   lint:
     docker:
-    - image: cimg/go:latest
+    - image: cimg/go:1.20.2
     steps:
-      - run : echo "Hello Lint"
+      - run: echo "Hello Lint"
  
  workflows:     
     pipeline:
       jobs:
-        - welcome/run
         - built
         - lint
