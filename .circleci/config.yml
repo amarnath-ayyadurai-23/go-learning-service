@@ -1,5 +1,11 @@
 version: 2.1
 
+workflows:     
+    pipeline:
+      jobs:
+        - built
+        - lint
+
 jobs:
   built:
     docker:
@@ -14,8 +20,3 @@ jobs:
     steps:
       - run: echo "Hello Lint"
  
- workflows:     
-    pipeline:
-      jobs:
-        - built
-        - lint
