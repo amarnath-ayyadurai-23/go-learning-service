@@ -4,8 +4,7 @@ workflows:
     pipeline:
       jobs:
         - built
-          requires:
-          - lint
+        - lint
 
 jobs:
   built:
