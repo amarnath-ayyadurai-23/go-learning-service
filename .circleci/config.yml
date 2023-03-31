@@ -19,6 +19,7 @@ workflows:
     - welcome/run
   pipeline:
     jobs:
-      lint
-      requires:
-        built
+      - lint
+      - built
+    requires:
+      welcome
