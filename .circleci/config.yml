@@ -5,8 +5,8 @@ workflows:
       jobs:
         - built
         - lint
-          requires:
-            - built
+            requires:
+              - built
 
 jobs:
   built:
