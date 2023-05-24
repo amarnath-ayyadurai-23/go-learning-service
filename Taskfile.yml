@@ -1,8 +1,8 @@
 version: '3'
 
 vars:
-  GO_BASIC_FOLDER: basicgo
-  GO_HTTP_FOLDER: http
+  GO_BASIC_FOLDER: functions/basicgo
+  GO_HTTP_FOLDER: functions/http
   GO_TEST_FOLDER: tests
   GO_REST_FOLDER: functions
 
@@ -73,16 +73,22 @@ tasks:
       - swagger serve ../docs/ginswagger.json
   
   local-db-build:
-    desc: "Setup local DB."
+    desc: "4.0 Setup local DB."
     cmds:
       - docker-compose -f docker-compose.yml up -d db
 
   local-migration-build:
-    desc: "Runs flyway migration."
+    desc: "4.1 Runs flyway migration."
     cmds:
       - docker-compose -f docker-compose.yml up -d flyway
 
   local-clean:
-    desc: "Remove Docker containers"
+    desc: "0.1 Remove Docker containers"
     cmds:
       - docker-compose down
+
+  local-setup:
+    desc: "4.3 run db + flyaway"
+    cmds:
+      - task: local-db-build
+      - task: local-migration-build
